@@ -1,26 +1,45 @@
-/*!
-    * Start Bootstrap - SB Admin v7.0.5 (https://startbootstrap.com/template/sb-admin)
-    * Copyright 2013-2022 Start Bootstrap
-    * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
-    */
-    // 
-// Scripts
-// 
 
-window.addEventListener('DOMContentLoaded', event => {
+var generateBtn = document.getElementById('generateSP');
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
-    }
 
-});
+userNameCred = [];
+userPassCred = [];
+userClusterCred = [];
+
+const submitLogin = function() {
+    userName = document.getElementById("inputUser").value;
+    userNameCred.push(userName);
+    userPass = document.getElementById("inputPassword").value;
+    userPassCred.push(userPass);
+    userCluster = document.getElementById("inputCluster").value;
+    userClusterCred.push(userCluster);
+    console.log(userNameCred);
+    console.log(userClusterCred);
+    console.log(userPassCred);
+    
+};
+
+generateBtn.addEventListener('click', submitLogin);
+
+
+
+const getToken = async () => {
+    const response = await fetch("https://" + userClusterCred + "/irisservices/api/v1/public/accessTokens" , {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: {
+            "domain": "Local",
+            "password": userPassCred,
+            "username": userNameCred
+        }
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+
+}
