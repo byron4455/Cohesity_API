@@ -36,7 +36,33 @@
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                              <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <button class="btn btn-primary" href="./dashboard.html" id="generateSP">Login</button>
+                                                
+                                                <button class="btn btn-primary" id="generateSP" type="button" onclick="submitLogin()">Login</button>
+                                                <script>
+                                                    userNameCred = [];
+                                                    userPassCred = [];
+                                                    userClusterCred = [];
+
+                                                    const submitLogin = function() {
+                                                        userName = document.getElementById("inputUser").value;
+                                                        userNameCred.push(userName);
+                                                        localStorage.setItem('username', userName)
+                                                        userPass = document.getElementById("inputPassword").value;
+                                                        userPassCred.push(userPass);
+                                                        localStorage.setItem('password', userPass)
+                                                        userCluster = document.getElementById("inputCluster").value;
+                                                        userClusterCred.push(userCluster);
+                                                        localStorage.setItem('cluster', userCluster)
+                                                        console.log(userNameCred);
+                                                        console.log(userClusterCred);
+                                                        console.log(userPassCred);
+                                                        if (userName === '') {
+                                                            window.alert("Please enter valid username")
+                                                        } else {
+                                                            window.location.href = "./dashboard.html"
+                                                        }
+                                                    };
+                                                </script>
                                             </div> 
                                         </form>
                                     </div>
