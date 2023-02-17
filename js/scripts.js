@@ -40,7 +40,7 @@ const getToken = async () => {
             'Content-Type': 'application/json'
         },
         body: {
-            "domain": "Local",
+            "domain": "sre.cohesity.com",
             "password": userPassCred,
             "username": userNameCred
         }
