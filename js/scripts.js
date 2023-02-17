@@ -36,6 +36,7 @@ console.log('password: ' + userPassCred);
 const getToken = async () => {
     const response = await fetch("https://" + userClusterCred + "/irisservices/api/v1/public/accessTokens" , {
         method: 'POST',
+        mode: 'cors',
         headers: {
             'Content-Type': 'application/json'
         },
