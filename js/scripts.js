@@ -34,7 +34,7 @@ console.log('cluster: ' + userClusterCred)
 userPassCred = localStorage.getItem('password');
 console.log('password: ' + userPassCred);
 const getToken = async () => {
-    const response = await fetch("https://" + userClusterCred + "/irisservices/api/v1/public/accessTokens" , {
+    const response = await fetch("http://" + userClusterCred + "/irisservices/api/v1/public/accessTokens" , {
         method: 'POST',
         mode: 'cors',
         headers: {
